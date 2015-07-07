@@ -1,0 +1,4 @@
+#!/bin/bash
+adb push /root/qa/xianjin/motu/bin/motu.jar data/local/tmp
+adb shell uiautomator runtest motu.jar -c com.baidu.motu.UITest
+

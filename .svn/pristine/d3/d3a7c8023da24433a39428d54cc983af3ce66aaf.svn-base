@@ -1,0 +1,10 @@
+#!/bin/bash
+svn up
+adb push /root/qa/xianjin/motu/bin/motu.jar data/local/tmp
+adb shell uiautomator runtest motu.jar -c com.baidu.motu.UITest
+adb shell uiautomator runtest motu.jar -c com.baidu.motu.MeiHuaTest
+adb shell uiautomator runtest motu.jar -c com.baidu.motu.PinTuTest
+adb shell uiautomator runtest motu.jar -c com.baidu.motu.XiangJiTest
+adb shell uiautomator runtest motu.jar -c com.baidu.motu.SuCaiTest
+adb shell uiautomator runtest motu.jar -c com.baidu.motu.SettingTest
+

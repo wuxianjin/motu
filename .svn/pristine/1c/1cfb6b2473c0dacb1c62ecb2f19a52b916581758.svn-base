@@ -1,0 +1,71 @@
+package com.baidu.motu;
+
+import java.io.File;
+import java.io.IOException;
+import com.android.uiautomator.core.UiObject;
+import com.android.uiautomator.core.UiObjectNotFoundException;
+import com.android.uiautomator.core.UiScrollable;
+import com.android.uiautomator.core.UiSelector;
+import com.android.uiautomator.testrunner.UiAutomatorTestCase;
+
+public class SuCaiTest extends UiAutomatorTestCase {
+	@Override
+	protected void setUp() throws Exception {
+		super.setUp();
+		getUiDevice().pressHome();
+		UiObject motu = new UiObject(new UiSelector().text("百度魔图"));
+		try {
+			motu.clickAndWaitForNewWindow();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	/**
+	 * 检查素材模块
+	 */
+	public void test01Xiangkuang() throws UiObjectNotFoundException,
+			InterruptedException, IOException {
+
+		try {
+			new UiObject(new UiSelector().text("素材")).click();
+			sleep(2000);
+			new UiObject(new UiSelector().text("相框")).click();
+			sleep(1000);
+			// 浏览全部相框
+			UiScrollable list = new UiScrollable(
+					new UiSelector().className("android.widget.ListView"));
+			// list.scrollTextIntoView("向上拉动加载下一页");
+			// list.scrollToEnd(9);
+			UiSelector uu = new UiSelector()
+					.resourceId("cn.jingling.motu.photowonder:id/downloading_icon");
+
+			UiObject obj = new UiObject(uu);
+
+			while (obj.exists()) {
+
+				obj.click();
+				sleep(500);
+				uu = uu.resourceId("cn.jingling.motu.photowonder:id/downloading_icon");
+				obj = new UiObject(uu);
+			}
+			/*
+			 * UiObject about = list.getChildByText( new
+			 * UiSelector().className("android.widget.TextView"), "向上拉动加载下一页");
+			 * about.click(); sleep(1000);
+			 * 
+			 * // 下载按钮 new UiObject( new UiSelector()
+			 * .resourceId("cn.jingling.motu.photowonder:id/downloading_icon"))
+			 * .click();
+			 */
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			getUiDevice().pressBack();
+		}
+
+	}
+}

@@ -1,0 +1,258 @@
+package com.baidu.motu;
+
+import java.io.File;
+import java.io.IOException;
+import com.android.uiautomator.core.UiObject;
+import com.android.uiautomator.core.UiObjectNotFoundException;
+import com.android.uiautomator.core.UiScrollable;
+import com.android.uiautomator.core.UiSelector;
+import com.android.uiautomator.testrunner.UiAutomatorTestCase;
+
+public class PinTuTest extends UiAutomatorTestCase {
+	@Override
+	protected void setUp() throws Exception {
+		super.setUp();
+		getUiDevice().pressHome();
+		UiObject motu = new UiObject(new UiSelector().text("百度魔图"));
+		try {
+			motu.clickAndWaitForNewWindow();
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	/**
+	 * 拼图--模板
+	 * 
+	 */
+	public void test01() throws UiObjectNotFoundException,
+			InterruptedException, IOException {
+		int i;
+		for (i = 2; i < 10; i++) {
+			try {
+				// 进入拼图模块
+				zhunbei();
+				// 从选择2张图片开始
+
+				for (int j = 0; j < i; j++) {
+					new UiObject(new UiSelector().className(
+							"android.widget.ImageView").index(j)).click();
+
+				}
+				pinTuStart(i);
+
+				new UiObject(new UiSelector().text("模板")).click();
+				pinTuTrun(i);
+				pinTuSave(i);
+
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+				pinTuBack();
+
+			}
+		}
+
+	}
+
+	public void zhunbei() throws UiObjectNotFoundException {
+		UiObject pintu = new UiObject(
+				new UiSelector()
+						.resourceId("cn.jingling.motu.photowonder:id/jigsaw_image"));
+		pintu.click();
+		// 选择相机下面的相册
+		UiScrollable list = new UiScrollable(
+				new UiSelector().className("android.widget.ListView"));
+		UiObject about = list.getChild(new UiSelector().textContains("Camera"));
+		about.click();
+
+		sleep(500);
+	}
+
+	/**
+	 * 拼图--自由
+	 * 
+	 */
+	public void test02() throws UiObjectNotFoundException,
+			InterruptedException, IOException {
+		int i;
+		for (i = 2; i < 10; i++) {
+			try {
+				// 进入拼图模块
+				UiObject pintu = new UiObject(
+						new UiSelector()
+								.resourceId("cn.jingling.motu.photowonder:id/jigsaw_image"));
+				pintu.click();
+				// 选择相机下面的相册
+				UiScrollable list = new UiScrollable(
+						new UiSelector().className("android.widget.ListView"));
+				UiObject about = list.getChild(new UiSelector()
+						.textContains("Camera"));
+				about.click();
+
+				sleep(1000);
+				// 选择2张图片
+
+				for (int j = 0; j < i; j++) {
+					new UiObject(new UiSelector().className(
+							"android.widget.ImageView").index(j)).click();
+
+				}
+				pinTuStart(i);
+				new UiObject(new UiSelector().text("自由")).click();
+				pinTuTrun(i);
+				pinTuSave(i);
+
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+				pinTuBack();
+
+			}
+		}
+
+	}
+
+	/**
+	 * 拼图--影楼
+	 * 
+	 */
+	public void test03() throws UiObjectNotFoundException,
+			InterruptedException, IOException {
+		int i;
+		for (i = 2; i < 10; i++) {
+			try {
+				// 进入拼图模块
+				UiObject pintu = new UiObject(
+						new UiSelector()
+								.resourceId("cn.jingling.motu.photowonder:id/jigsaw_image"));
+				pintu.click();
+				// 选择相机下面的相册
+				UiScrollable list = new UiScrollable(
+						new UiSelector().className("android.widget.ListView"));
+				UiObject about = list.getChild(new UiSelector()
+						.textContains("Camera"));
+				about.click();
+
+				sleep(1000);
+				// 选择2张图片
+
+				for (int j = 0; j < i; j++) {
+					new UiObject(new UiSelector().className(
+							"android.widget.ImageView").index(j)).click();
+
+				}
+				pinTuStart(i);
+				new UiObject(new UiSelector().text("影楼")).click();
+				pinTuTrun(i);
+				pinTuSave(i);
+
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+				pinTuBack();
+
+			}
+		}
+
+	}
+
+	/**
+	 * 拼图--拼接
+	 * 
+	 */
+	public void test04() throws UiObjectNotFoundException,
+			InterruptedException, IOException {
+		int i;
+		for (i = 2; i < 11; i++) {
+			try {
+				// 进入拼图模块
+				UiObject pintu = new UiObject(
+						new UiSelector()
+								.resourceId("cn.jingling.motu.photowonder:id/jigsaw_image"));
+				pintu.click();
+				// 选择相机下面的相册
+				UiScrollable list = new UiScrollable(
+						new UiSelector().className("android.widget.ListView"));
+				UiObject about = list.getChild(new UiSelector()
+						.textContains("Camera"));
+				about.click();
+
+				sleep(1000);
+				// 选择2张图片
+
+				for (int j = 0; j < i; j++) {
+					new UiObject(new UiSelector().className(
+							"android.widget.ImageView").index(j)).click();
+
+				}
+				pinTuStart(i);
+
+				new UiObject(new UiSelector().text("拼接")).click();
+				pinTuTrun(i);
+				pinTuSave(i);
+
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+				pinTuBack();
+
+			}
+		}
+
+	}
+
+	public void pinTuTrun(int b) throws UiObjectNotFoundException {
+		UiObject zuo = new UiObject(
+				new UiSelector()
+						.resourceId("cn.jingling.motu.photowonder:id/jigsaw_left_arrow"));
+		UiObject you = new UiObject(
+				new UiSelector()
+						.resourceId("cn.jingling.motu.photowonder:id/jigsaw_right_arrow"));
+		if (b % 2 == 0) {
+			zuo.click();
+		} else {
+			you.click();
+		}
+
+		if (b > 4) {
+			sleep(2000);
+		}
+
+	}
+
+	public void pinTuStart(int b) throws UiObjectNotFoundException {
+		// 开始拼图
+		new UiObject(
+				new UiSelector()
+						.resourceId("cn.jingling.motu.photowonder:id/top_btn_right"))
+				.click();
+		if (b > 4) {
+			sleep(2000);
+		}
+	}
+
+	public void pinTuBack() throws UiObjectNotFoundException {
+		new UiObject(new UiSelector().text("首页")).click();
+	}
+
+	public void pinTuSave(int b) throws UiObjectNotFoundException {
+		pinTuStart(b);
+		if (b > 4) {
+			sleep(10000);
+		}
+		// 验证图片保存成功
+		UiObject name = new UiObject(new UiSelector().className(
+				"android.widget.TextView").textContains("IMG"));
+
+		System.out.println(name.getText());
+		// assertTrue(name.exists());
+	}
+}

@@ -1,0 +1,72 @@
+package com.baidu.motu;
+
+import java.io.File;
+import java.io.IOException;
+import com.android.uiautomator.core.UiObject;
+import com.android.uiautomator.core.UiObjectNotFoundException;
+import com.android.uiautomator.core.UiScrollable;
+import com.android.uiautomator.core.UiSelector;
+import com.android.uiautomator.testrunner.UiAutomatorTestCase;
+
+public class SettingTest extends UiAutomatorTestCase {
+	/**
+	 * 检查设置模块ui
+	 * 
+	 * @throws UiObjectNotFoundException
+	 * @throws InterruptedException
+	 * @throws IOException
+	 */
+	public void test08SetingUI() throws UiObjectNotFoundException,
+			InterruptedException, IOException {
+		try {
+			// 点击设置
+			new UiObject(
+					new UiSelector()
+							.resourceId("cn.jingling.motu.photowonder:id/welcome_setting"))
+					.click();
+			// 未登录状态---登录账号
+			new UiObject(
+					new UiSelector()
+							.resourceId("cn.jingling.motu.photowonder:id/setting_cloud_gallery_login"))
+					.click();
+
+			getUiDevice().pressBack();
+			// 素材管理
+			new UiObject(
+					new UiSelector()
+							.resourceId("cn.jingling.motu.photowonder:id/setting_material_layout"))
+					.click();
+			getUiDevice().pressBack();
+			// 美化图片质量
+			new UiObject(
+					new UiSelector()
+							.resourceId("cn.jingling.motu.photowonder:id/setting_image_size_layout"))
+					.click();
+			getUiDevice().pressBack();
+			// new UiObject(new UiSelector().text("存储路径")).click();
+			new UiObject(
+					new UiSelector()
+							.resourceId("cn.jingling.motu.photowonder:id/setting_save_path_layout"))
+					.click();
+			getUiDevice().pressBack();
+			// new UiObject(new UiSelector().text("分享帐号设置")).click();
+			new UiObject(
+					new UiSelector()
+							.resourceId("cn.jingling.motu.photowonder:id/setting_share_layout"))
+					.click();
+			getUiDevice().pressBack();
+			//
+			UiScrollable list = new UiScrollable(
+					new UiSelector().className("android.widget.ScrollView"));
+
+			list.scrollTextIntoView("关于");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			getUiDevice().pressBack();
+			getUiDevice().pressBack();
+		}
+
+	}
+}

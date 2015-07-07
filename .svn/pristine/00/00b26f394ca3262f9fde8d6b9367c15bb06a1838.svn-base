@@ -1,0 +1,7 @@
+﻿d: & cd workspace\motu 
+call motu_build.bat
+echo "编译最新代码完成"
+call motu_push.bat
+echo "jar包已经导入手机"
+adb shell uiautomator runtest motu.jar -c com.baidu.motu.SuCaiTest
+pause

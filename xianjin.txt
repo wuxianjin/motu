@@ -1,0 +1,19 @@
+水平滚动
+UiScrollable rList = new UiScrollable(
+				new UiSelector().className("android.widget.AdapterView"));
+		List.setAsHorizontalList();
+		List.scrollTextIntoView("回忆");
+		
+		list.clickTopLeft();//左上==第一个
+		list.click();//默认点击最后一个
+		
+		UiObject about =list.getChild(new UiSelector().textContains("Camera"));
+		
+		UiObject aa = new UiObject(
+				new UiSelector().className("android.widget.ImageView").instance(0));
+		
+		
+		UiObject aa = new UiObject(
+				new UiSelector().className("android.widget.ImageView").index(2));
+		
+		

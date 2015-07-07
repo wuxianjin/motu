@@ -1,0 +1,14 @@
+#!/bin/bash
+svn up
+adb push /root/qa/xianjin/motu/motu/bin/motu.jar data/local/tmp
+adb uninstall cn.jingling.motu.photowonder
+adb install /root/tomcat/webapps/ROOT/motu.apk
+adb shell am start -n cn.jingling.motu.photowonder/cn.jingling.motu.photowonder.SplashActivity
+
+adb shell uiautomator runtest motu.jar -c com.baidu.motu.UITest
+adb shell uiautomator runtest motu.jar -c com.baidu.motu.MeiHuaTest
+adb shell uiautomator runtest motu.jar -c com.baidu.motu.PinTuTest
+adb shell uiautomator runtest motu.jar -c com.baidu.motu.XiangJiTest
+adb shell uiautomator runtest motu.jar -c com.baidu.motu.SuCaiTest
+adb shell uiautomator runtest motu.jar -c com.baidu.motu.SettingTest
+
